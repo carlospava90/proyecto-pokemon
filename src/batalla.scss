@@ -42,50 +42,77 @@ $unit: 8px;
     text-align: center;
     padding: 5px;
   }
-   
-  .container-pokemon  {
+.container-batalla{
+    display: flex;
+    flex-flow:row wrap;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    border: solid;
+    background-color: aliceblue;
+  }
+  .container-pokemones {
+    background-color: #7B68EE;
+    width: 48%;
+    margin: 10px;
+  }
+  .container-pantalla1{
+    border: solid;
+    width: 45%;
+    background-color: aqua;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    background-color: $div-color;
-    margin: 10px;
-    width: 98%;
-    padding: 5px;
-    box-shadow: 0 0 20px 2px rgba(0,0,0,0.1);
-
-    background-size: 100% 100%;
-  
+   flex-direction: column;
+   align-content: space-around;
+    flex-grow: 0;
+    //padding: 5px ;
+    margin: 3px;
+    // height: 500px;
   }
-
-  
-
-div.pokemon-bloque {
-    margin: 5px;
-    border: 1px solid black;
-    float: left;
-    width: 180px;
+ 
+  .container-pantalla2{
+    border: solid;
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-grow: 1;
+    //padding: 5px ;
+    margin: 3px;
+    height: 500px;
   }
-  
-  div.pokemon-bloque:hover {
-    border: 1px solid #777;
-  }
-  
-  div.pokemon-bloque img {
-    width: 50%;
-    height: auto;
-  }
-  
-  div.desc {
-    padding: 15px;
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 95%;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
   }
-
-  .img-container{
-   
+  .container-nav{
+    border: solid;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
     padding: 5px;
   }
-
+  .pagination{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+   justify-content: space-around;
+    border: solid;
+    background-color: aquamarine;
+  }
 
   ul  {
  //   @include reset-pm();
