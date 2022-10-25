@@ -1,76 +1,63 @@
-const containerPokemon=document.querySelector(".container-pantalla1");
+
 const previous=document.querySelector("#previous");
 const next=document.querySelector("#next");
 
+let pokemonmaximo=6;
 let offset=1;
-let limit=2;
+let limit=5;
 
-// previous.addEventListener('click',()=>{
-//   if(offset !=1){
-// offset -=10;
-// removeimagenes(containerPokemon);
-// datospokemones(offset,limit);
-// }
-// })
 
-// next.addEventListener('click',()=>{
-//   offset +=10;
-//   removeimagenes(containerPokemon);
-//   datospokemones(offset,limit)
-//   })
-
-function datospokemon(id){
+function datospokemon(id,offset,limit){
   fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
   .then((respuesta)=>respuesta.json())
-  .then((datos)=>{agregarPokemon(datos)
+  .then((datos)=>{agregarPokemon(datos,offset,limit)
   });
 }
 
 function datospokemones(offset,limit){
   for (let index = offset; index <= offset+limit; index++) {
-   
-    datospokemon(index);
-    
+    datospokemon(index,offset,limit);
   }
  
 }
 
-function agregarPokemon(pokemon) {
-    console.log(pokemon.stats[1].base_stat);
-  const tarjeta=document.createElement("div");
-  tarjeta.classList.add("container-pantalla1");
-
-  const imagenPokemon=document.createElement("div");
-   imagenPokemon.classList.add("img-container");
-
-  const imagenfront= document.createElement("img");
-  imagenfront.src=pokemon.sprites.front_default;
-
-  imagenPokemon.appendChild(imagenfront);  
+function agregarPokemon(pokemon,offset,limit) {
+  let idpokemon=pokemon.id;
+  let limitepokemon=limit+offset-6;
+  console.log(idpokemon)
+  if(pokemon.id>6){
+    idpokemon-=limitepokemon;
+  }
   
-  const name=document.createElement("p");
-  name.classList.add('name');
-  name.textContent="Nombre: "+pokemon.name;
-
-  const height=document.createElement("p");
-  height.textContent="Vida: "+pokemon.stats[0].base_stat;
-
-  const weight=document.createElement("p");
-  weight.textContent="Poder: "+pokemon.stats[1].base_stat;
-
-
-  tarjeta.appendChild(imagenPokemon);
-  tarjeta.appendChild(name);
-  tarjeta.appendChild(height);
- tarjeta.appendChild(weight);
-
-  containerPokemon.appendChild(tarjeta);
+  const imgpokemon1=document.getElementById(`img-pokemon${idpokemon}`);
+  const nombrepokemon1=document.getElementById(`nombre-pokemon${idpokemon}`);
+  const poderpokemon1=document.getElementById(`poder-pokemon${idpokemon}`);
+  const hppokemon1=document.getElementById(`hp-pokemon${idpokemon}`);
+  imgpokemon1.src=pokemon.sprites.front_default;
+  nombrepokemon1.innerHTML="Nombre: "+pokemon.name;
+  poderpokemon1.innerHTML="Poder: "+pokemon.stats[1].base_stat;
+  hppokemon1.innerHTML="Vida: "+pokemon.stats[0].base_stat;
 
 }
+
 
 function removeimagenes(parent){
   while(parent.firstChild){
     parent.removeChild(parent.firstChild);
   }
 }
+
+previous.addEventListener('click',()=>{
+  if(offset !=1){
+offset -=6;
+
+datospokemones(offset,limit);
+}
+})
+
+next.addEventListener('click',()=>{
+  offset +=6;
+
+  datospokemones(offset,limit)
+  })
 datospokemones(offset,limit);
