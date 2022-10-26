@@ -1,58 +1,102 @@
-$primary-color:#BB8FCE ;
-$secondary-color:black;
-$terciary-color:#DAF7A6 ;
-$header-color:#7B68EE;
-$div-color:#CEE7FF;
-$font-color:black;
 
+h1  {
+  text-align: center;
+}
 
-#container-batalla {
+img{
   border: solid;
+}
+#container-pantallas  {
+  display: flex;
+  border: solid;
+}
+
+#nav-pokemones  {
+  display: flex;
+ 
+ justify-content: center;
+ align-items: center;
+}
+
+#radio-pokemon10  {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
+// #container-pantallas  {
+//   display: flex;
+//   border: solid;
+//   padding: 0px;
+//   margin: 20px;
+// }
 
-#container-pantalla1  {
-  border: solid;
+// #container-pokemones  {
+//   border: solid;
+// }
 
-}
+// #div-parrafos-pokemon {
+//   border: solid;
+// }
 
-#container-pantalla2  {
-  border: solid;
-}
-.container-pokemones {
-  // border: solid;
-  display: flex;
-  flex-direction: row;
-  background-color: #7B68EE;
-}
+// img {
+//   border: solid;
+// }
+// $primary-color:#BB8FCE ;
+// $secondary-color:black;
+// $terciary-color:#DAF7A6 ;
+// $header-color:#7B68EE;
+// $div-color:#CEE7FF;
+// $font-color:black;
 
-img {
-  border: solid;
-  width: 50px;
-  height: 50px;
-}
-.pokemones{
-  display: flex;
-  flex-direction: row;
 
-}
-#div-parrafos-pokemon-1 {
-  display: flex;
-  flex-direction: column;
- border: solid;
- width: 100%;
- height: 50%;
-}
-// .container-imgpokemon {
+// #container-batalla {
+//   border: solid;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+// }
+
+// #container-pantalla1  {
+//   border: solid;
 
 // }
 
-.divparrafo {
- // border: solid;
-  width: 80%;
-}
+// #container-pantalla2  {
+//   border: solid;
+// }
+// .container-pokemones {
+//   // border: solid;
+//   display: flex;
+//   flex-direction: row;
+//   background-color: #7B68EE;
+// }
+
+// img {
+//   border: solid;
+//   width: 50px;
+//   height: 50px;
+// }
+// .pokemones{
+//   display: flex;
+//   flex-direction: row;
+
+// }
+// #div-parrafos-pokemon-1 {
+//   display: flex;
+//   flex-direction: column;
+//  border: solid;
+//  width: 100%;
+//  height: 50%;
+// }
+// // .container-imgpokemon {
+
+// // }
+
+// .divparrafo {
+//  // border: solid;
+//   width: 80%;
+// }
 // $box-shadow:0 2px 10px 0 rgba(0,0,0,0.6);
 
 // $limit:10;
