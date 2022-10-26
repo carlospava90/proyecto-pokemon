@@ -1,43 +1,25 @@
-#container-batalla {
-  border: solid;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#container-pantalla1 {
-  border: solid;
-}
-
-#container-pantalla2 {
-  border: solid;
-}
-
-.container-pokemones {
-  display: flex;
-  flex-direction: row;
-  background-color: #7B68EE;
+h1 {
+  text-align: center;
 }
 
 img {
   border: solid;
-  width: 50px;
-  height: 50px;
 }
 
-.pokemones {
+#container-pantallas {
+  display: flex;
+  border: solid;
+}
+
+#nav-pokemones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#radio-pokemon10 {
   display: flex;
   flex-direction: row;
-}
-
-#div-parrafos-pokemon-1 {
-  display: flex;
-  flex-direction: column;
-  border: solid;
-  width: 100%;
-  height: 50%;
-}
-
-.divparrafo {
-  width: 80%;
+  justify-content: center;
+  align-items: center;
 }
