@@ -16,24 +16,24 @@
             <h1>Batalla pokemon</h1>
             <div  id="container-pantalla-izquierda" class="col-lg-6  col-sm-6  ">
                 <div id="container-contenido-izquierdo" class="row"  >
-                    <div id="container-pokemones" class="row">
-                        <div id="pokemon" class="row pokemon ">
-                            <div class="row">
-                                <div class="col-2 check-box-pokemon  ">
-                                    <input id="radio-pokemon1" type="checkbox" name="seleccionpokemon" checked value="1" >
+                    <div id="container-pokemones" class="row container-pokemones">
+                        <!-- <div id="pokemon" class="row pokemon ">
+                                <div id="container-checkbox-pokemon" class="col-2   ">
+                                    <input id="checkboxpokemon" type="checkbox" name="seleccionpokemon" checked value="1" >
                                 </div>
-                                <div class="col-4 imgtamano">
-                                    <img id="img-pokemon1" class="img-pantalla-izquierda" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png" alt="pokemon-1">
+                                <div id="container-img-pokemon-pantalla-izquierda" class="col-3 imgtamano">
+                                    <img id="img-pokemon-pantalla-izquierda" class="img-pantalla-izquierda" src="" alt="pokemon-1">
                                 </div>
-                                <div id="div-parrafos-pokemon" class="col-lg-6 ">
-                                    <p id="nombre-pokemon1"></p>
-                                    <p id="poder-pokemon1"></p>
-                                    <p id="hp-pokemon1"></p>
-                                    <p id="batallas">Batallas ganadas: </p>
-                                </div>
-                            </div>
+                                <div id="container-parrafos-pokemon" class="col-7 col-lg-6 ">
+                            <p id="nombre-pokemon">1</p>
+                            <p id="poder-pokemon">2</p>
+                            <p id="hp-pokemon">3</p>
+                            <p id="batallas">Batallas ganadas: </p>
                         </div>
-                        <div id="pokemon" class="row pokemon ">
+                                
+                        </div> -->
+                        
+                        <!-- <div id="pokemon" class="row pokemon ">
                             <div class="row">
                                 <div class="col-2 check-box-pokemon  ">
                                     <input id="radio-pokemon1" type="checkbox" name="seleccionpokemon" checked value="1" >
@@ -112,16 +112,16 @@
                                     <p id="batallas">Batallas ganadas: </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-12 container-nav" id="container-nav">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
+                                <li id="anterior-pagina" class="page-item " >
+                                    <a class="page-link" href="#">Previous</a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">Home</a></li>
-                                <li class="page-item">
+                                <li id="home-pagina" class="page-item"><a class="page-link" href="#">Home</a></li>
+                                <li id="siguiente-pagina" class="page-item">
                                     <a class="page-link" href="#">Next</a>
                                 </li>
                             </ul>
@@ -149,7 +149,7 @@
                     <div id="container-batalla-ganador" class="row">
                         <h3>GANADOR</h3>
                         <div class="col-4 ">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png" alt="pokemon ganador">
+                            <img id="img-ganador" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png" alt="pokemon ganador">
                         </div>
                         <div class="col-8 ">
                             <p>ganador: </p>
