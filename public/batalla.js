@@ -1,139 +1,124 @@
 
-const seleccionpokemon1=document.getElementById("seleccionpokemon1").addEventListener("click", pokemonbatalla1);
-const previous=document.querySelector("#previous");
-const next=document.querySelector("#next");
+let url = `https://pokeapi.co/api/v2/pokemon/?limit=6&offset=0`;
+let siguienteurl="";
+let anteriorurl="";
+const anteriorpaginapokemon=document.querySelector("#anterior-pagina");
+const homepaginapokemon=document.querySelector("#home-pagina");
+const siguientepaginapokemon=document.querySelector("#siguiente-pagina");
+const containerpokemones=document.querySelector(".container-pokemones");
 
-let pokemonmaximo=6;
-let offset=1;
-let limit=5;
-let idpokemonradio=1;
-let idpokemonbatalla=0;
+siguientepaginapokemon.addEventListener('click',()=>{
+  siguientePagina(siguienteurl);
+  })
+  anteriorpaginapokemon.addEventListener('click',()=>{
+    console.log(anteriorurl)
+    anteriorurl!=null?anteriorPagina(anteriorurl):console.log("null");
+    })
 
-function pokemonbatalla1(){
+function crearGetElementById(id)  {
+  return  getelementid=document.createElement(id);
+}
 
- console.log(seleccionpokemon1)
-  for (let index = 1; index <= 6; index++) {
-    let valueradio=0;
-    
-    let opcionradio=document.getElementById(`radio-pokemon${index}`);
-    if(offset>6){
+function jsonpokemones()  { 
+  fetch(url)
+      .then((respuesta)=>respuesta.json())
+      .then((datos)=>(datospokemones(datos))) 
+}
 
-      if(opcionradio.checked){
-        valueradio=opcionradio.value;
-        idpokemonbatalla=((offset+parseInt(valueradio))-1);
-        //console.log(idpokemonbatalla)
-      
-      }
-    }else{
-    if(opcionradio.checked){
-      valueradio=opcionradio.value;
-      idpokemonbatalla=valueradio;
-      //console.log(valueradio)
-    }
-  }
-  }
+function datospokemones(datos) {
+  siguienteurl= JSON.stringify(datos.next);
+  anteriorurl= JSON.stringify(datos.previous);
+ console.log(anteriorurl)
+  datos.results.forEach(pokemondatos => {
+    fetch(pokemondatos.url)
+    .then((respuesta)=>respuesta.json())
+    .then((datos)=>(mostrarPokemonesPantallaIzquierda(datos))) 
+   });
+}
 
-  datopokemon(idpokemonbatalla);
 
- }
 
-//  function pokemonbatalla2(){
+function mostrarPokemonesPantallaIzquierda(datospokemones)  {
 
+  let cardpokemonespantallaizquierda=crearGetElementById("div");
+  cardpokemonespantallaizquierda.classList.add("pokemon")
+  cardpokemonespantallaizquierda.id="pokemon";
+
+  let containercheckboxpokemon=crearGetElementById("div");
+  containercheckboxpokemon.classList.add("container-checkbox-pokemon");
+  
+  let checkboxpokemon=crearGetElementById("input");
+  checkboxpokemon.type="checkbox";
+  containercheckboxpokemon.appendChild(checkboxpokemon);
+
+  let containerimgpokemonpantallaizquierda=crearGetElementById("div");
+  cardpokemonespantallaizquierda.classList.add("container-img-pokemon-pantalla-izquierda")
+
+  let imgpokemonpantallaizquierda=crearGetElementById("img");
+  imgpokemonpantallaizquierda.classList.add("img-pokemon-pantalla-izquierda")
+  imgpokemonpantallaizquierda.src=datospokemones.sprites.front_default;
+  containerimgpokemonpantallaizquierda.appendChild(imgpokemonpantallaizquierda);
  
-//   for (let index = 1; index <= 6; index++) {
-//     let valueradio=0;
-    
-//     let opcionradio=document.getElementById(`radio-pokemon${index}`);
-//     if(offset>6){
+  let containerparrafospokemon=crearGetElementById("div");
+  containerparrafospokemon.classList.add("container-parrafos-pokemon");
+  let nombrepokemon=crearGetElementById("p");
+  nombrepokemon.textContent="NOMBRE:"+datospokemones.name;
+  let poderpokemon=crearGetElementById("p");
+  poderpokemon.textContent="PODER: "+datospokemones.stats[1].base_stat;
+  let hppokemon=crearGetElementById("p");
+  hppokemon.textContent="VIDA: "+datospokemones.stats[0].base_stat;
+  let batallas=crearGetElementById("p");
+  batallas.textContent="Batallas Ganadas: ";
+  
 
-//       if(opcionradio.checked){
-//         valueradio=opcionradio.value;
-//         idpokemonbatalla=((offset+parseInt(valueradio))-1);
-      
-//       }
-//     }else{
-//     if(opcionradio.checked){
-//       valueradio=opcionradio.value;
-//       idpokemonbatalla=valueradio;
-//     }
-//   }
-//   }
+  containerparrafospokemon.appendChild(nombrepokemon);
+  containerparrafospokemon.appendChild(poderpokemon);
+  containerparrafospokemon.appendChild(hppokemon);
+  containerparrafospokemon.appendChild(batallas);
 
-//   datopokemon(idpokemonbatalla);
+  cardpokemonespantallaizquierda.appendChild(containercheckboxpokemon);
+  cardpokemonespantallaizquierda.appendChild(containerimgpokemonpantallaizquierda);
+  cardpokemonespantallaizquierda.appendChild(containerparrafospokemon)
+  containerpokemones.appendChild(cardpokemonespantallaizquierda);
 
-//  }
-
- function mostrarpokemonbatalla1(datopokemon) {
-  console.log()
-  const imgpokemon2=document.getElementById('seleccionpokemon1');
-   imgpokemon2.src=datopokemon.sprites.front_default;
- }
- function datopokemon(id){
-     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-     .then((respuesta)=>respuesta.json())
-   .then((datos)=>{mostrarpokemonbatalla1(datos)}) 
- }
-
-function datospokemon(id,offset,limit){
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-  .then((respuesta)=>respuesta.json())
-  .then((datos)=>{agregarPokemon(datos,offset,limit)
-  });
 }
-
-function datospokemones(offset,limit){
-  for (let index = offset; index <= offset+limit; index++) {
-    datospokemon(index,offset,limit);
-  }
- 
+function siguientePagina(siguienteurl){
+  let urlsiguiente=JSON.parse(siguienteurl);
+  removeimagenes(containerpokemones);
+  fetch(urlsiguiente)
+      .then((respuesta)=>respuesta.json())
+      .then((datos)=>(datospokemones(datos))) 
 }
-
-function agregarPokemon(pokemon,offset,limit) {
-  let idpokemon=pokemon.id;
-  let limitepokemon=limit+offset-6;
-  if(pokemon.id>6){
-    idpokemon-=limitepokemon;
-    mostrarPokemones(pokemon,idpokemon);
-    
-  }else{
-    mostrarPokemones(pokemon,idpokemon);
-  }
-}
-
-function  mostrarPokemones(pokemon,idpokemon){
-  const imgpokemon1=document.getElementById(`img-pokemon${idpokemon}`);
-  const nombrepokemon1=document.getElementById(`nombre-pokemon${idpokemon}`);
-  const poderpokemon1=document.getElementById(`poder-pokemon${idpokemon}`);
-  const hppokemon1=document.getElementById(`hp-pokemon${idpokemon}`);
-  imgpokemon1.src=pokemon.sprites.front_default;
-  nombrepokemon1.innerHTML="Nombre: "+pokemon.name;
-  poderpokemon1.innerHTML="Poder: "+pokemon.stats[1].base_stat;
-  hppokemon1.innerHTML="Vida: "+pokemon.stats[0].base_stat;
+function anteriorPagina(anteriorurl){
+  let urlanterior=JSON.parse(anteriorurl);
+  removeimagenes(containerpokemones);
+  fetch(urlanterior)
+      .then((respuesta)=>respuesta.json())
+      .then((datos)=>(datospokemones(datos))) 
 }
 
 function removeimagenes(parent){
-  while(parent.firstChild){
-    parent.removeChild(parent.firstChild);
+    while(parent.firstChild){
+      parent.removeChild(parent.firstChild);
+    }
   }
-}
+jsonpokemones();
 
 
 
-previous.addEventListener('click',()=>{
-  if(offset !=1){
-offset -=6;
 
-datospokemones(offset,limit);
-}
-})
 
-next.addEventListener('click',()=>{
-  offset +=6;
+// previous.addEventListener('click',()=>{
+//   if(offset !=1){
+// offset -=6;
 
-  datospokemones(offset,limit)
-  })
+
+
+// next.addEventListener('click',()=>{
+//   offset +=6;
+
+//   datospokemones(offset,limit)
+//   })
 
   
-
-//datospokemones(offset,limit);
 
