@@ -134,30 +134,30 @@
                 <div id="container-contenido-derecho" class="row">
                     <div id="container-seleccion-pokemones-batalla" class="">
                         <div id="seleccion-pokemon-uno" class="">
-                            <img class="img-seleccion-batalla" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png" alt="">
+                            <img id="img-seleccion-batalla-pokemon1" class="img-seleccion-batalla" src="img/buscarpokemon.png" alt="">
                             
-                            <p>Nombre: </p>
+                            <p id="p-seleccion-pokemon1">Nombre: </p>
                         </div>
                         <div id="seleccion-pokemon-dos" class=" ">
-                            <img class="img-seleccion-batalla" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png" alt="pokemon 2">
-                            <p>Nombre: </p>
+                            <img id="img-seleccion-batalla-pokemon2" class="img-seleccion-batalla" src="img/buscarpokemon.png" alt="pokemon 2">
+                            <p id="p-seleccion-pokemon2">Nombre: </p>
                         </div>
                     </div>
                     <div id="container-boton-batalla" class=" ">   
-                            <button id="boton-batalla-empezar" class="botones-pantalla-derecha">Batalla</button>
+                            <button id="boton-batalla-empezar" class="botones-pantalla-derecha" onclick="comienzoBatallaPokemones()">Batalla</button>
                     </div>
                     <div id="container-batalla-ganador" class="row">
                         <h3>GANADOR</h3>
                         <div class="col-4 ">
-                            <img id="img-ganador" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png" alt="pokemon ganador">
+                            <img id="img-ganador" src="img/buscarpokemon.png" alt="pokemon ganador">
                         </div>
                         <div class="col-8 ">
-                            <p>ganador: </p>
+                            <p id="p-ganador"></p>
                         </div>
                     </div>
                     
                     <div class=" ">
-                        <button class=" botones-pantalla-derecha" type="button">Nueva Batalla</button>
+                        <button id="boton-batalla-empezar" class=" botones-pantalla-derecha" type="button" onclick="botonBatallaNueva()" src="img/buscarpokemon.png">Nueva Batalla</button>
                     </div>
                 </div>
             </div>
