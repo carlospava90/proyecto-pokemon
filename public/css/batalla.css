@@ -4,20 +4,21 @@
   box-sizing: border-box;
 }
 
-#container {
+h1 {
+  text-align: center;
+}
+
+#container-batalla-pokemon {
+  border: ridge;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 #container-pantallas {
-  border: ridge;
-  padding: 5px;
   display: flex;
-}
-
-h1 {
-  text-align: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 h3 {
@@ -25,65 +26,107 @@ h3 {
 }
 
 #container-pantalla-izquierda {
+  padding: 0;
   display: flex;
+}
+
+#container-contenido-izquierdo {
   border: ridge;
   border-color: red;
-  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#container-pokemones {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.container-checkbox-pokemon {
+  display: flex;
+  justify-content: center;
+  flex-grow: 2;
+}
+
+.container-img-pokemon-pantalla-izquierda {
+  display: flex;
+  flex-grow: 3;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .container-parrafos-pokemon {
   display: flex;
-  padding: 5px;
+  padding-top: 20px;
   line-height: 0;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  flex-grow: 10;
+}
+
+.container-img-pokemon-pantalla-izquierda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-pokemon-pantalla-izquierda {
   display: flex;
   border: ridge;
-  border-color: blue;
-  width: 50px;
-  height: 50px;
+  border-color: red;
+  width: 80px;
+  height: 60px;
 }
 
 #pokemon {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
-  padding: 5px;
-}
-
-.check-box-pokemon {
-  padding: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.pokemon {
-  padding: 5px;
+.check-box-pokemon {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav {
+  padding: 0;
+  width: 100%;
+  height: 50px;
+}
+
+#container-nav {
+  padding: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 #container-pantalla-derecha {
-  padding: 2px;
   display: flex;
 }
 
 #container-contenido-derecho {
-  border: solid;
-  width: 100%;
-  padding: 5px;
-  margin: 5px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: space-between;
 }
 
 #container-seleccion-pokemones-batalla {
+  height: 200px;
   display: flex;
   border: ridge;
   flex-direction: row;
@@ -107,9 +150,52 @@ h3 {
   width: 100%;
   margin: 10px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .img-seleccion-batalla {
   border: ridge;
   margin: 20px;
+}
+
+#img-seleccion-batalla-pokemon1 {
+  width: 120px;
+  height: 120px;
+}
+
+#img-seleccion-batalla-pokemon2 {
+  width: 120px;
+  height: 120px;
+}
+
+#container-batalla-ganador {
+  display: flex;
+  flex-direction: column;
+  border: ridge;
+  height: 250px;
+}
+
+#container-boton-batalla {
+  display: flex;
+  justify-content: center;
+}
+
+#container-boton-batalla-nueva {
+  display: flex;
+  justify-content: center;
+}
+
+#container-ganador-img-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#img-ganador {
+  border: ridge;
+  margin-top: 30px;
+  width: 150px;
+  height: 150px;
 }
