@@ -4,6 +4,8 @@ let datosjson="";
 let contadorseleccionbatallapokemon1=0;
 let contadorseleccionbatallapokemon2=0;
 let contadorcheckboxseleccionbatallas=0;
+let ganadores={}
+let contenidoganadores=[]
 let pokemonseleccionado1 ={}
 let pokemonseleccionado2 ={}
 
@@ -37,20 +39,29 @@ function crearCreateElement(id,clase)  {
 function jsonpokemones(urlapipokemon)  { 
   fetch(urlapipokemon)
       .then((respuesta)=>respuesta.json())
-      .then((datos)=>(datospokemones(datos))) 
+      .then((datos)=>(datospokemones(datos,urlapipokemon))) 
 }
 
-function datospokemones(datos) {
+function datospokemones(datos,urlapipokemon) {
   datos.results.forEach(pokemondatos => {
     fetch(pokemondatos.url)
     .then((respuesta)=>respuesta.json())
-    .then((datos)=>(mostrarPokemonesPantallaIzquierda(datos))) 
+    .then((datos)=>(mostrarPokemonesPantallaIzquierda(datos,urlapipokemon))) 
    });
    datosjson=datos;
 }
 
 
-function mostrarPokemonesPantallaIzquierda(datospokemones)  {
+function mostrarPokemonesPantallaIzquierda(datospokemones,urlapipokemon)  {
+
+  let ganados=0;
+  contenidoganadores.forEach(element => {
+    if(element==datospokemones.name)  {
+      ganados+=1;
+    }
+  });
+  datospokemones.ganados=ganados;
+  // ganadores.id==datospokemones.id?console.log("igual"):console.log("no igual");
 
   let cardpokemonespantallaizquierda=crearCreateElement("div","pokemon");
   cardpokemonespantallaizquierda.id="pokemon";
@@ -59,6 +70,8 @@ function mostrarPokemonesPantallaIzquierda(datospokemones)  {
   
   let checkboxpokemon=crearCreateElement("input","checkboxpokemon");
   checkboxpokemon.type="checkbox";
+  (pokemonseleccionado1.name==datospokemones.name)&&(pokemonseleccionado1.checked==true)?checkboxpokemon.checked=true:checkboxpokemon.checked=false;
+  (pokemonseleccionado2.name==datospokemones.name)&&(pokemonseleccionado2.checked==true)?checkboxpokemon.checked=true:checkboxpokemon.checked=false;
   containercheckboxpokemon.appendChild(checkboxpokemon);
 
   let containerimgpokemonpantallaizquierda=crearCreateElement("div","container-img-pokemon-pantalla-izquierda");
@@ -75,7 +88,7 @@ function mostrarPokemonesPantallaIzquierda(datospokemones)  {
   let hppokemon=crearCreateElement("p","p");
   hppokemon.textContent="VIDA: "+datospokemones.stats[0].base_stat;
   let batallas=crearCreateElement("p","p");
-  batallas.textContent="Batallas Ganadas: ";
+  batallas.textContent="Batallas Ganadas: "+datospokemones.ganados;
   
 
   containerparrafospokemon.appendChild(nombrepokemon);
@@ -89,28 +102,29 @@ function mostrarPokemonesPantallaIzquierda(datospokemones)  {
   containerpokemones.appendChild(cardpokemonespantallaizquierda);
  
   checkboxpokemon.addEventListener ('click',()=>{
-
+    
     if ((Object.entries(pokemonseleccionado1).length==0)&&(checkboxpokemon.checked==true)) {
-      pokemonseleccionado1=pokemonSeleccionado(datospokemones,checkboxpokemon.checked);
+      pokemonseleccionado1=pokemonSeleccionado(datospokemones,checkboxpokemon.checked,urlapipokemon);
 
       let imgpokemonseleccion1=creargetElementById('img-seleccion-batalla-pokemon1');
        imgpokemonseleccion1.setAttribute('src',pokemonseleccionado1.src);
 
       let pseleccionpokemon1=creargetElementById('p-seleccion-pokemon1');
       pseleccionpokemon1.innerHTML="Nombre: "+pokemonseleccionado1.name;
+
       
     }else{ 
-      pokemonseleccionado2=pokemonSeleccionado(datospokemones,checkboxpokemon.checked);
+      pokemonseleccionado2=pokemonSeleccionado(datospokemones,checkboxpokemon.checked,urlapipokemon);
       
       let imgpokemonseleccion2=creargetElementById('img-seleccion-batalla-pokemon2');
       imgpokemonseleccion2.setAttribute('src',pokemonseleccionado2.src);
 
       let pseleccionpokemon2=creargetElementById('p-seleccion-pokemon2');
       pseleccionpokemon2.innerHTML="Nombre: "+pokemonseleccionado2.name;
-    }    
+    }  
     })
-
 }
+
 
 function siguientePagina(siguienteurl){
   removeimagenes(containerpokemones);
@@ -127,8 +141,7 @@ function anteriorPagina(anteriorurl){
   jsonpokemones(anteriorurl);
 }
 
-function pokemonSeleccionado(datospokemon,checkboxpokemon){
-
+function pokemonSeleccionado(datospokemon,checkboxpokemon,urlapipokemon){
   let pokemonseleccionado={};
   pokemonseleccionado.name=datospokemon.name;
   pokemonseleccionado.id=datospokemon.id;
@@ -136,6 +149,7 @@ function pokemonSeleccionado(datospokemon,checkboxpokemon){
   pokemonseleccionado.hp=datospokemon.stats[0].base_stat;
   pokemonseleccionado.att=datospokemon.stats[1].base_stat;
   pokemonseleccionado.checked=checkboxpokemon;
+  pokemonseleccionado.url=urlapipokemon;
   return pokemonseleccionado;
 }
 
@@ -146,20 +160,27 @@ function removeimagenes(parent){
 }
 
 function comienzoBatallaPokemones() {
+
+  if((Object.entries(pokemonseleccionado1).length!=0)&&(Object.entries(pokemonseleccionado2).length!=0)){
   let resultado1=pokemonseleccionado1.hp;
   let resultado2=pokemonseleccionado2.hp;
   do {
     let ataquepokemon= Math.floor(Math.random()*2);
-    console.log(ataquepokemon);
     (ataquepokemon=='0')?(resultado2-=pokemonseleccionado1.att) : (resultado1-=pokemonseleccionado2.att);
   } while ((resultado1>0)&&(resultado2>0));
   (resultado1<=0&&resultado2>0)?resultadobatallapokemon(pokemonseleccionado2): resultadobatallapokemon(pokemonseleccionado1);
+}else{
+  window.alert("seleccione los dos pokemones para la batalla")
+}
+
 }
 
 
 function resultadobatallapokemon(pokemonganador) {
-  console.log(pokemonganador)
-  console.log("Ganador"+pokemonganador.name)
+
+  let botonbatallanueva=creargetElementById('boton-batalla-nueva');
+  botonbatallanueva.disabled=false;
+
   let imgganadorbatalla=creargetElementById('img-ganador');
   imgganadorbatalla.src=pokemonganador.src;
 
@@ -168,10 +189,25 @@ function resultadobatallapokemon(pokemonganador) {
 
   let botonbatalla=creargetElementById('boton-batalla-empezar');
   botonbatalla.disabled=true;
-  
+
+  let imgseleccionuno=creargetElementById('img-seleccion-batalla-pokemon1');
+  imgseleccionuno.setAttribute('src','img/buscarpokemon.png');
+
+  let imgselecciondos=creargetElementById('img-seleccion-batalla-pokemon2');
+  imgselecciondos.setAttribute('src','img/buscarpokemon.png');
+
+  pokemonseleccionado1.checked=false;
+  pokemonseleccionado2.checked=false;
+
+  ganadores.name=pokemonganador.name;
+  contenidoganadores.push(ganadores.name);
+
+  removeimagenes(containerpokemones);
+  jsonpokemones(pokemonganador.url);
 }
 
 function botonBatallaNueva(){
+  
   let botonbatalla=creargetElementById('boton-batalla-empezar');
   botonbatalla.disabled=false;
 
@@ -180,6 +216,18 @@ function botonBatallaNueva(){
 
   let nombreganador=creargetElementById('p-ganador');
   nombreganador.innerHTML="";
+
+  let botonbatallanueva=creargetElementById('boton-batalla-nueva');
+  botonbatallanueva.disabled=true;
+
+  url=pokemonseleccionado1.url;
+  pokemonseleccionado1={};
+  pokemonseleccionado2={};
+
+
+
+  removeimagenes(containerpokemones);
+  jsonpokemones(url);
 }
 
 jsonpokemones(urlapipokemon);
