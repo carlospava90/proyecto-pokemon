@@ -26,13 +26,16 @@ h3 {
 }
 
 #container-pantalla-izquierda {
-  padding: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 50%;
   display: flex;
 }
 
 #container-contenido-izquierdo {
   border: ridge;
   border-color: red;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -115,6 +118,7 @@ nav {
 
 #container-pantalla-derecha {
   display: flex;
+  justify-content: center;
 }
 
 #container-contenido-derecho {
@@ -198,4 +202,13 @@ nav {
   margin-top: 30px;
   width: 150px;
   height: 150px;
+}
+
+@media (max-width: 600px) {
+  #container-pantalla-izquierda {
+    width: 100%;
+  }
+  #container-pantalla-derecha {
+    width: 100%;
+  }
 }
