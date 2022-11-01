@@ -14,8 +14,6 @@ h1  {
   flex-wrap: wrap;
 }
 #container-pantallas  {
- 
-  // padding: 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,12 +25,16 @@ h3  {
 
 //pantalla izquierda
 #container-pantalla-izquierda {
-  padding: 0;
+ 
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 50%;
   display: flex;
 }
 #container-contenido-izquierdo  {
   border: ridge;
   border-color: red;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -125,6 +127,7 @@ height: 50px;
 #container-pantalla-derecha {
   // padding:2px ;
   display: flex;
+  justify-content: center;
 }
 
 
@@ -211,6 +214,18 @@ justify-content: center;
   margin-top: 30px;
   width: 150px;
   height: 150px;
+
+}
+
+@media (max-width:600px){
+
+  #container-pantalla-izquierda {
+    width: 100%;
+  }
+
+  #container-pantalla-derecha {
+    width: 100%;
+  }
 
 }
 

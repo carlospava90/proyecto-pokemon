@@ -47,16 +47,20 @@ function datospokemones(datos,urlapipokemon) {
    datosjson=datos;
 }
 
-
-function mostrarPokemonesPantallaIzquierda(datospokemones,urlapipokemon)  {
+function victoriasGanadasPokemones(datospokemones) {
   let ganados=0;
   contenidoganadores.forEach(element => {
     if(element==datospokemones.name)  {
       ganados+=1;
     }
   });
-  datospokemones.ganados=ganados;
+  return ganados;
+}
 
+
+function mostrarPokemonesPantallaIzquierda(datospokemones,urlapipokemon)  {
+
+  datospokemones.ganados=victoriasGanadasPokemones(datospokemones);
   let cardpokemonespantallaizquierda=crearCreateElement("div","pokemon");
   cardpokemonespantallaizquierda.id="pokemon";
 
@@ -160,21 +164,27 @@ function removeimagenes(parent){
 }
 
 function comienzoBatallaPokemones() {
+((Object.entries(pokemonseleccionado1).length!=0)&&(Object.entries(pokemonseleccionado2).length!=0))?batallaPokemon():alert("seleccione los dos pokemones para la batalla");
+}
 
-  if((Object.entries(pokemonseleccionado1).length!=0)&&(Object.entries(pokemonseleccionado2).length!=0)){
+function batallaPokemon() {
   let resultado1=pokemonseleccionado1.hp;
   let resultado2=pokemonseleccionado2.hp;
+  let ataquepokemon= Math.floor(Math.random()*2);
   do {
-    let ataquepokemon= Math.floor(Math.random()*2);
-    (ataquepokemon=='0')?(resultado2-=pokemonseleccionado1.att) : (resultado1-=pokemonseleccionado2.att);
-  } while ((resultado1>0)&&(resultado2>0));
+    switch (ataquepokemon) {
+      case 0:
+            resultado2-=pokemonseleccionado1.att;
+            ataquepokemon=1;
+        break;
+      default:
+            resultado1-=pokemonseleccionado2.att;
+            ataquepokemon=0;
+            break;
+    }
+  } while ((resultado1>0)&&(resultado2>0)); 
   (resultado1<=0&&resultado2>0)?resultadobatallapokemon(pokemonseleccionado2): resultadobatallapokemon(pokemonseleccionado1);
-}else{
-  alert("seleccione los dos pokemones para la batalla")
 }
-
-}
-
 
 function resultadobatallapokemon(pokemonganador) {
 
@@ -183,6 +193,7 @@ function resultadobatallapokemon(pokemonganador) {
 
   let imgganadorbatalla=creargetElementById('img-ganador');
   imgganadorbatalla.src=pokemonganador.src;
+  
 
   let nombreganador=creargetElementById('p-ganador');
   nombreganador.innerHTML=pokemonganador.name;
@@ -195,6 +206,7 @@ function resultadobatallapokemon(pokemonganador) {
 
   let imgselecciondos=creargetElementById('img-seleccion-batalla-pokemon2');
   imgselecciondos.setAttribute('src','img/buscarpokemon.png');
+  
 
   let pseleccionpokemon1=creargetElementById('p-seleccion-pokemon1');
   pseleccionpokemon1.innerHTML=" ";
@@ -225,6 +237,7 @@ function botonBatallaNueva(){
 
   let botonbatallanueva=creargetElementById('boton-batalla-nueva');
   botonbatallanueva.disabled=true;
+  
 
   url=pokemonseleccionado1.url;
   pokemonseleccionado1={};
