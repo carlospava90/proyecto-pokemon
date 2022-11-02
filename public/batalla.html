@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>batalla</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/batalla.css">
+</head>
+<body>
+    <main class="container" id="container-batalla-pokemon">
+        <div class="row" id="container-pantallas"> 
+            <div>
+                <h1>Batalla pokemon</h1>
+            </div>
+            <div  id="container-pantalla-izquierda" class="col-12 col-lg-6  col-md-6 col-sm-6  ">
+                <div id="container-contenido-izquierdo" class=""  >
+                    <div id="container-pokemones" class="container-pokemones">
+                    </div>
+                    <div class=" container-nav" id="container-nav">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li id="anterior-pagina" class="page-item " >
+                                    <a class="page-link" href="#">Previous</a>
+                                </li>
+                                <li id="home-pagina" class="page-item"><a class="page-link" href="#">Home</a></li>
+                                <li id="siguiente-pagina" class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div  id="container-pantalla-derecha" class="col-12 col-lg-6 col-md-6 col-sm-6  ">
+                <div id="container-contenido-derecho" class="row">
+                    <div id="container-seleccion-pokemones-batalla" class="">
+                        <div id="seleccion-pokemon-uno" class="">
+                            <img id="img-seleccion-batalla-pokemon1" class="img-seleccion-batalla" src="img/buscarpokemon.png" alt="">
+                            
+                            <p id="p-seleccion-pokemon1"> </p>
+                        </div>
+                        <div id="seleccion-pokemon-dos" class=" ">
+                            <img id="img-seleccion-batalla-pokemon2" class="img-seleccion-batalla" src="img/buscarpokemon.png" alt="pokemon 2">
+                            <p id="p-seleccion-pokemon2"> </p>
+                        </div>
+                    </div>
+                    <div id="container-boton-batalla" class=" ">   
+                            <button id="boton-batalla-empezar" class="botones-pantalla-derecha" onclick="comienzoBatallaPokemones()" >Batalla</button>
+                    </div>
+                    <div id="container-batalla-ganador" class="">
+                        <h3>GANADOR</h3>
+                        <div id="container-ganador-img-p"> 
+                            <div class="">
+                                <img id="img-ganador" src="img/buscarpokemon.png" alt="pokemon ganador">
+                            </div>
+                            <div id="container-p-ganador" class="">
+                                <p id="p-ganador"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="container-boton-batalla-nueva" class=" ">
+                        <button id="boton-batalla-nueva" class=" botones-pantalla-derecha" type="button" onclick="botonBatallaNueva()" src="img/buscarpokemon.png" disabled="true">Nueva Batalla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="/public/batalla.js"></script>
+</body>
+</html>
